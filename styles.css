@@ -13,6 +13,8 @@
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 *, *::before, *::after {
@@ -331,13 +333,15 @@ h6 {
    ======================================== */
 .hero {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    overflow: visible;
+    overflow: hidden;
     padding: 0 4rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .hero-video {
@@ -530,6 +534,7 @@ h6 {
         max-width: 100%;
         box-sizing: border-box;
         padding: 0 0.5rem;
+        margin: 0;
     }
     
     .slider-dots {
@@ -546,6 +551,7 @@ h6 {
 @media (max-width: 480px) {
     .quote-slider-section {
         padding: 0 0.25rem;
+        margin: 0;
     }
     
     .slider-dots {
@@ -698,12 +704,13 @@ h6 {
 @media (max-width: 768px) {
     .hero {
         flex-direction: column;
-        padding: 0 1rem;
+        padding: 2rem 1rem;
         justify-content: center;
         gap: 1.5rem;
         width: 100%;
+        min-height: 100vh;
         box-sizing: border-box;
-        overflow-x: hidden;
+        overflow: hidden;
     }
     
     .hero-logo {
@@ -775,11 +782,12 @@ h6 {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 0 0.5rem;
+        padding: 1.5rem 0.5rem;
         gap: 1rem;
         width: 100%;
+        min-height: 100vh;
         box-sizing: border-box;
-        overflow-x: hidden;
+        overflow: hidden;
     }
     
     .hero-logo-img {
@@ -3148,17 +3156,6 @@ h6 {
         background: #2c3e50;
     }
 
-    .hero-content {
-        padding: 0.5rem;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 100%;
-        gap: 0.5rem;
-    }
 
     /* Mobile Hero Logo */
     .hero-logo {
@@ -4030,10 +4027,6 @@ h6 {
         padding: 0 0.8rem;
     }
 
-    .hero-content {
-        padding: 0.3rem;
-        gap: 0.3rem;
-    }
 
     /* Extra Small Mobile Hero Logo */
     .hero-logo {
@@ -4117,9 +4110,6 @@ h6 {
     }
 
     /* Extra Small Mobile Improvements */
-    .hero-content {
-        padding: 1rem 0.5rem 1.5rem 0.5rem;
-    }
 
     .static-quote,
     .typing-text {
@@ -4311,10 +4301,6 @@ h6 {
 
 /* Very small screens (320px and below) */
 @media (max-width: 320px) {
-    .hero-content {
-        padding: 0.2rem;
-        gap: 0.2rem;
-    }
 
     .hero-logo-img {
         height: 280px;
