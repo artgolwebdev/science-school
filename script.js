@@ -123,21 +123,197 @@ function updateNavbarBackground() {
     }
 }
 
-// Typing Animation
-function typeWriter(element, text, speed = 50) {
+// Typing Animation with Moving Cursor
+function typeWriter(element, text, speed = 30) {
     let i = 0;
     element.innerHTML = '';
     
     function type() {
         if (i < text.length) {
-            element.innerHTML += text.charAt(i);
+            // Add some randomness to typing speed for realism
+            const randomDelay = speed + Math.random() * 20;
+            
+            element.innerHTML = text.substring(0, i + 1) + '<span class="cursor">|</span>';
             i++;
-            setTimeout(type, speed);
+            setTimeout(type, randomDelay);
+        } else {
+            // Keep cursor blinking after typing is complete
+            element.innerHTML = text + '<span class="cursor">|</span>';
         }
     }
     
     type();
 }
+
+// Hero Slider Functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.quote-slide');
+const indicators = document.querySelectorAll('.dot');
+const totalSlides = slides.length;
+let slideInterval;
+let isTransitioning = false;
+
+function showSlide(index) {
+    if (isTransitioning) return;
+    
+    isTransitioning = true;
+    
+    // Remove active class from all slides and indicators
+    slides.forEach(slide => slide.classList.remove('active'));
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    
+    // Add active class to current slide and indicator
+    if (slides[index]) {
+        slides[index].classList.add('active');
+    }
+    if (indicators[index]) {
+        indicators[index].classList.add('active');
+    }
+    
+    // Reset transition lock after animation
+    setTimeout(() => {
+        isTransitioning = false;
+    }, 800);
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    showSlide(currentSlide);
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 4000);
+}
+
+// Auto-advance slides every 4 seconds
+slideInterval = setInterval(nextSlide, 4000);
+
+// Touch/Swipe support
+let startX = 0;
+let startY = 0;
+let endX = 0;
+let endY = 0;
+let isDragging = false;
+
+const quoteSlider = document.querySelector('.quote-slider');
+
+if (quoteSlider) {
+    // Mouse events
+    quoteSlider.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+    });
+    
+    quoteSlider.addEventListener('mouseleave', () => {
+        slideInterval = setInterval(nextSlide, 4000);
+    });
+
+    // Touch events
+    quoteSlider.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isDragging = true;
+        quoteSlider.classList.add('dragging');
+        clearInterval(slideInterval);
+    });
+
+    quoteSlider.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+    });
+
+    quoteSlider.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        
+        endX = e.changedTouches[0].clientX;
+        endY = e.changedTouches[0].clientY;
+        
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
+        
+        // Only trigger swipe if horizontal movement is greater than vertical
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+            if (deltaX > 0) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+        }
+        
+        isDragging = false;
+        quoteSlider.classList.remove('dragging');
+        slideInterval = setInterval(nextSlide, 4000);
+    });
+
+    // Mouse drag support
+    quoteSlider.addEventListener('mousedown', (e) => {
+        startX = e.clientX;
+        startY = e.clientY;
+        isDragging = true;
+        quoteSlider.classList.add('dragging');
+        clearInterval(slideInterval);
+        e.preventDefault();
+    });
+
+    quoteSlider.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+    });
+
+    quoteSlider.addEventListener('mouseup', (e) => {
+        if (!isDragging) return;
+        
+        endX = e.clientX;
+        endY = e.clientY;
+        
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
+        
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+            if (deltaX > 0) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+        }
+        
+        isDragging = false;
+        quoteSlider.classList.remove('dragging');
+        slideInterval = setInterval(nextSlide, 4000);
+    });
+
+    // Prevent default drag behavior
+    quoteSlider.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+    });
+}
+
+// Manual slide control via indicators
+indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+        goToSlide(index);
+    });
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+        prevSlide();
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 4000);
+    } else if (e.key === 'ArrowRight') {
+        nextSlide();
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 4000);
+    }
+});
 
 // Initialize typing animation after hero fade-in
 setTimeout(() => {
@@ -145,7 +321,7 @@ setTimeout(() => {
     const typingText = "If you feel lost in life and long for a breath of the fresh air, if depression, fears, or addictions are holding you back, there is hope and a path to overcome them. Sometimes this feeling of being lost comes from deep knowledge that there must be a way toward a higher, more fulfilling level of life. You are fully capable of reaching it — but lack the keys and a hint, that could reveal what this path looks like and where to find it.";
     
     if (typingElement) {
-        typeWriter(typingElement, typingText, 30);
+        typeWriter(typingElement, typingText, 25);
     }
 }, 2500);
 
@@ -181,16 +357,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Parallax effect for hero video
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroVideo = document.querySelector('.hero-video video');
-    
-    if (heroVideo) {
-        const rate = scrolled * -0.5;
-        heroVideo.style.transform = `translateY(${rate}px)`;
-    }
-});
 
 // Scroll-controlled video for developers section
 let isScrolling = false;

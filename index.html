@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School of Alpasca</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Theano+Didot:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Loading Animation -->
@@ -62,17 +62,36 @@
             </video>
         </div>
         <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-text-container">
-                <div class="static-quote">
-                    <p>"The drop that falls into the water symbolizes the transition from worldly science, in which the sciences of all worlds are united — and therefore, logic no longer applies here.</p>
-                    <p>The drop is a sphere — a reflection of the laws of our universe, where this shape preserves minimal energy.</p>
-                    <p>And the body of water into which the drop falls represents all worlds, where water can take any form — the form of its container."</p>
-                </div>
-                <div class="typing-text">
-                    <span id="typing-text"></span>
-                    <span class="cursor">|</span>
-                </div>
+        
+        <!-- Hero Logo -->
+        <div class="hero-logo">
+            <img src="logo.png" alt="School of Alpasca" class="hero-logo-img">
+        </div>
+        
+        <!-- Quote Slider -->
+        <div class="quote-slider">
+            <div class="quote-slide active">
+                <p>The drop that falls into the water symbolizes the transition from worldly science, in which the sciences of all worlds are united — and therefore, logic no longer applies here.</p>
+            </div>
+            <div class="quote-slide">
+                <p>The drop is a sphere — a reflection of the laws of our universe, where this shape preserves minimal energy.</p>
+            </div>
+            <div class="quote-slide">
+                <p>And the body of water into which the drop falls represents all worlds, where water can take any form — the form of its container.</p>
+            </div>
+            <div class="slider-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typing Animation Section -->
+    <section class="typing-section">
+        <div class="typing-container">
+            <div class="typing-text">
+                <span id="typing-text"></span>
             </div>
         </div>
     </section>
