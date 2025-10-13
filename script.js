@@ -1,4 +1,10 @@
-// Loading Animation
+/* ========================================
+   SPIRIT SCIENCE - MAIN JAVASCRIPT
+   ======================================== */
+
+/* ========================================
+   LOADING ANIMATION
+   ======================================== */
 window.addEventListener('load', function() {
     const loadingScreen = document.getElementById('loading-screen');
     
@@ -10,7 +16,9 @@ window.addEventListener('load', function() {
     }, 3000); // Show loading for 3 seconds
 });
 
-// Navigation
+/* ========================================
+   NAVIGATION SYSTEM
+   ======================================== */
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');
 const hamburger = document.getElementById('hamburger');
@@ -190,11 +198,11 @@ function goToSlide(index) {
     currentSlide = index;
     showSlide(currentSlide);
     clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 4000);
+    slideInterval = setInterval(nextSlide, 9000);
 }
 
-// Auto-advance slides every 4 seconds
-slideInterval = setInterval(nextSlide, 4000);
+// Auto-advance slides every 9 seconds
+slideInterval = setInterval(nextSlide, 9000);
 
 // Touch/Swipe support
 let startX = 0;
@@ -203,6 +211,9 @@ let endX = 0;
 let endY = 0;
 let isDragging = false;
 
+/* ========================================
+   QUOTE SLIDER SYSTEM
+   ======================================== */
 const quoteSlider = document.querySelector('.quote-slider');
 
 if (quoteSlider) {
@@ -212,7 +223,7 @@ if (quoteSlider) {
     });
     
     quoteSlider.addEventListener('mouseleave', () => {
-        slideInterval = setInterval(nextSlide, 4000);
+        slideInterval = setInterval(nextSlide, 9000);
     });
 
     // Touch events
@@ -249,7 +260,7 @@ if (quoteSlider) {
         
         isDragging = false;
         quoteSlider.classList.remove('dragging');
-        slideInterval = setInterval(nextSlide, 4000);
+        slideInterval = setInterval(nextSlide, 9000);
     });
 
     // Mouse drag support
@@ -286,7 +297,7 @@ if (quoteSlider) {
         
         isDragging = false;
         quoteSlider.classList.remove('dragging');
-        slideInterval = setInterval(nextSlide, 4000);
+        slideInterval = setInterval(nextSlide, 9000);
     });
 
     // Prevent default drag behavior
@@ -307,14 +318,17 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
         prevSlide();
         clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 4000);
+        slideInterval = setInterval(nextSlide, 9000);
     } else if (e.key === 'ArrowRight') {
         nextSlide();
         clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 4000);
+        slideInterval = setInterval(nextSlide, 9000);
     }
 });
 
+/* ========================================
+   TYPING ANIMATION SYSTEM
+   ======================================== */
 // Initialize typing animation after hero fade-in
 setTimeout(() => {
     const typingElement = document.getElementById('typing-text');
@@ -331,6 +345,9 @@ window.addEventListener('scroll', () => {
     updateNavbarBackground();
 });
 
+/* ========================================
+   SCROLL-TRIGGERED ANIMATIONS
+   ======================================== */
 // Intersection Observer for fade-in animations
 const observerOptions = {
     threshold: 0.1,
@@ -346,6 +363,35 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
+// Timeline-specific observer for staggered animations
+const timelineObserverOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const timelineItem = entry.target;
+            const timelineYear = timelineItem.querySelector('.timeline-year');
+            const timelineContent = timelineItem.querySelector('.timeline-content');
+            const title = timelineContent?.querySelector('h3');
+            const subtitle = timelineContent?.querySelector('h4');
+            const paragraphs = timelineContent?.querySelectorAll('p');
+            const lists = timelineContent?.querySelectorAll('ul');
+            
+            // Add animate class to trigger animations
+            timelineItem.classList.add('animate');
+            if (timelineYear) timelineYear.classList.add('animate');
+            if (timelineContent) timelineContent.classList.add('animate');
+            if (title) title.classList.add('animate');
+            if (subtitle) subtitle.classList.add('animate');
+            if (paragraphs) paragraphs.forEach(p => p.classList.add('animate'));
+            if (lists) lists.forEach(ul => ul.classList.add('animate'));
+        }
+    });
+}, timelineObserverOptions);
+
 // Observe sections for fade-in animation
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.section');
@@ -354,6 +400,12 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.transform = 'translateY(30px)';
         section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(section);
+    });
+    
+    // Observe timeline items for staggered animations
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+        timelineObserver.observe(item);
     });
 });
 
