@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School of Alpasca</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="drop-container">
+            <div class="drop"></div>
+            <div class="resonance-rings">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="School of Alpasca" class="logo-img">
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About School</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#developers" class="nav-link">Developers & Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#history" class="nav-link">Our History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact & Support</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#ideation" class="nav-link">Ideation & Collaboration</a>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-video">
+            <video autoplay muted loop playsinline>
+                <source src="bg-video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text-container">
+                <div class="static-quote">
+                    <p>"The drop that falls into the water symbolizes the transition from worldly science, in which the sciences of all worlds are united — and therefore, logic no longer applies here.</p>
+                    <p>The drop is a sphere — a reflection of the laws of our universe, where this shape preserves minimal energy.</p>
+                    <p>And the body of water into which the drop falls represents all worlds, where water can take any form — the form of its container."</p>
+                </div>
+                <div class="typing-text">
+                    <span id="typing-text"></span>
+                    <span class="cursor">|</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-content">
+                <h2>About School</h2>
+                <div class="about-split-layout">
+                    <div class="about-text-content">
+                        <div class="about-intro">
+                            <p>Our School unites Science and the Connection with Spirit, revealing the consciousness of oneness and the potential to creativity of each person.</p>
+                        </div>
+                        <div class="main-project">
+                            <h3>Main Project: Journey of Essence</h3>
+                            <p>Through understanding the structure of one's own consciousness, a person can enhance the quality of life, inevitably overcome harmful habits and psychological difficulties, and learn the process of accepting their vital energy.</p>
+                            <p>Students of the School become masters and leaders of the new era, forming Cities of Light — first in consciousness, and then in reality.</p>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="glowing-illustration">
+                            <div class="light-orb">
+                                <img src="logo.png" alt="School of Alpasca" class="orb-logo">
+                            </div>
+                            <div class="energy-waves">
+                                <div class="wave wave-1"></div>
+                                <div class="wave wave-2"></div>
+                                <div class="wave wave-3"></div>
+                            </div>
+                            <div class="consciousness-dots">
+                                <div class="dot dot-1">
+                                    <img src="logo.png" alt="Logo" class="dot-logo">
+                                </div>
+                                <div class="dot dot-2">
+                                    <img src="logo.png" alt="Logo" class="dot-logo">
+                                </div>
+                                <div class="dot dot-3">
+                                    <img src="logo.png" alt="Logo" class="dot-logo">
+                                </div>
+                                <div class="dot dot-4">
+                                    <img src="logo.png" alt="Logo" class="dot-logo">
+                                </div>
+                                <div class="dot dot-5">
+                                    <img src="logo.png" alt="Logo" class="dot-logo">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book Showcase -->
+                        <div class="book-showcase">
+                            <h4>Essential Reading</h4>
+                            <div class="books-grid">
+                                <div class="book-item">
+                                    <div class="book-cover">
+                                        <div class="book-placeholder">
+                                            <div class="book-spine"></div>
+                                            <div class="book-pages"></div>
+                                        </div>
+                                    </div>
+                                    <div class="book-info">
+                                        <h5>The Book of Sandes Ramon</h5>
+                                        <p>5 Years transformation Path</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="book-item">
+                                    <div class="book-cover">
+                                        <div class="book-placeholder">
+                                            <div class="book-spine"></div>
+                                            <div class="book-pages"></div>
+                                        </div>
+                                    </div>
+                                    <div class="book-info">
+                                        <h5>Golden Genome</h5>
+                                        <p>Total Transformation of Consciousness</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="book-item">
+                                    <div class="book-cover">
+                                        <div class="book-placeholder">
+                                            <div class="book-spine"></div>
+                                            <div class="book-pages"></div>
+                                        </div>
+                                    </div>
+                                    <div class="book-info">
+                                        <h5>IT BRAIN</h5>
+                                        <p>Academy Center of Light</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developers Section -->
+    <section id="developers" class="section developers-section">
+        <div class="developers-video-bg">
+            <video id="developers-video" muted playsinline>
+                <source src="bg-video.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="section-content">
+                <h2>Developers & Projects</h2>
+                <div class="developers-grid">
+                    <div class="developer-card">
+                        <div class="developer-avatar">
+                            <img src="logo.png" alt="Logo" class="avatar-logo">
+                        </div>
+                        <h3>Anna Kamallaya Khefors</h3>
+                        <p class="developer-title">Psychologist and Grand Master of a new epoch</p>
+                        <div class="projects-list">
+                            <h4>Projects:</h4>
+                            <ul>
+                                <li>Golden Genome School (2018–2022, resumes 2026)</li>
+                                <li>IT BRAIN</li>
+                                <li>Family Unity</li>
+                                <li>The Power of Acceptance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="developer-card">
+                        <div class="developer-avatar">
+                            <img src="logo.png" alt="Logo" class="avatar-logo">
+                        </div>
+                        <h3>Sari Simhov Amoria</h3>
+                        <p class="developer-title">Actress, screenwriter, producer</p>
+                        <div class="projects-list">
+                            <h4>Projects:</h4>
+                            <ul>
+                                <li>Online Course: Return to an Initial Memory Cell</li>
+                                <li>Project: Acting and Movies of a New Epoch</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="developer-card">
+                        <div class="developer-avatar">
+                            <img src="logo.png" alt="Logo" class="avatar-logo">
+                        </div>
+                        <h3>Sandes Ramon</h3>
+                        <p class="developer-title">Founder & Developer of the School of Alpasca</p>
+                        <p class="developer-role">Director of R&D</p>
+                        <div class="projects-list">
+                            <h4>Projects:</h4>
+                            <ul>
+                                <li>Physical Teleportation of Bio Systems (ptBS)</li>
+                            </ul>
+                            <h4>Courses:</h4>
+                            <ul>
+                                <li>Ascended Essences</li>
+                                <li>Abundance</li>
+                                <li>ptBS Workshop</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="section history-section">
+        <div class="container">
+            <div class="section-content">
+                <h2>Our History</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2018</div>
+                        <div class="timeline-content">
+                            <h3>Formation of Academy Center of Light</h3>
+                            <p>by Grand Master Anna Kamallaya Hefors</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2018</div>
+                        <div class="timeline-content">
+                            <h3>Crist Consciousness Course</h3>
+                            <p>First 144 masters revealed</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <h3>Golden Genome</h3>
+                            <p>Total Transformation of Consciousness Course</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-content">
+                            <h3>Academy Center of Light transformed into IT BRAIN</h3>
+                            <div class="scholars-section">
+                                <p>Many scholars all around the world released in consciousness, found their life purpose and became masters conducting their own Courses:</p>
+                                <div class="scholar">
+                                    <h4>Sari Amoria Simhov (Israel)</h4>
+                                    <p>Being an Actress realised her purpose of creating Movies of new Epoch (Working on her scenario to film "Hologram")</p>
+                                    <p><strong>Course:</strong> Return to the Initial Memory Cell</p>
+                                </div>
+                                <div class="scholar">
+                                    <h4>Maral Kairbekov Iisa (Kazakhstan)</h4>
+                                    <p><strong>Youtube Blog:</strong> <a href="https://youtube.com/@maral_insights" target="_blank">https://youtube.com/@maral_insights</a></p>
+                                </div>
+                                <div class="scholar">
+                                    <h4>Lora (Russia)</h4>
+                                    <p>Founded her own method Yoga and opened classes.</p>
+                                </div>
+                                <div class="scholar">
+                                    <h4>Many masters (from Russia)</h4>
+                                    <p>Work in IT Brain as one team with Kamallaya.</p>
+                                    <p>Aleksa, Solana Sunlight – high frequency songs.</p>
+                                </div>
+                            </div>
+                            <div class="transformation-path">
+                                <p><strong>5 Years transformation Path described in the Book of Sandes Ramon</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h3>After releasing in consciousness</h3>
+                            <p>and finding his life purpose Sandes Ramon met his Genuine Half, founded the School and Journey of Essense Project</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight-yellow">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h3>May 01 2025</h3>
+                            <p><strong>School of Alpasea in oneness with IT Brain – (now we are bigger).</strong></p>
+                            <p>Founded by Sandes Ramon with products serving as important addition to IT Brain.</p>
+                            <div class="highlight-message yellow">
+                                <p>🟡 Here the realisation of our life purpose starts. May 01 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight-green">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h3>October 01 2025</h3>
+                            <h4>Journey of Essense Project consisting of 3 Courses:</h4>
+                            <ul>
+                                <li>Assended Essenses (transformation through bad habits and fears)</li>
+                                <li>Find your purpose in life and meet your Genuine Half.</li>
+                                <li>Part of Quantum Chemistry</li>
+                            </ul>
+                            <div class="highlight-message green">
+                                <p>🟢 Now – it is your Time to become a Leader! Join the School and take part in Journey of Essense Project.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h3>Anna Kamallaya Hefors continues her mission</h3>
+                            <p>and creates more products:</p>
+                            <ul>
+                                <li>Family Unity</li>
+                                <li>The Power of Acceptance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-content">
+                            <h3>Legendary Golden Genome will resume</h3>
+                            <p>in a new form.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="goals-section">
+                    <h3>There are four main Goals of all Masters and Leaders of new epoch:</h3>
+                    <ol>
+                        <li>Find harmony in their family.</li>
+                        <li>Find the life purpose after revelation in consciousness.</li>
+                        <li>Become a leader and in a higher consciousness build a City of Light where everybody will be living in genuine love.</li>
+                        <li>Become a power and basement for mutual construction of Physical Teleportation Apparatus.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-content">
+                <h2>Contact & Support</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="contact-item">
+                            <h4>Email</h4>
+                            <p>info@schoolofalpasca.org</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Address</h4>
+                            <p>123 Wisdom Lane<br>Consciousness City, CC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ideation Section -->
+    <section id="ideation" class="section ideation-section">
+        <div class="container">
+            <div class="section-content">
+                <h2>Ideation & Collaboration Platform</h2>
+                <div class="ideation-content">
+                    <div class="journey-intro">
+                        <h3>Alpasca Journey of Essence</h3>
+                        <p>This journey begins the moment you feel the call to move toward a higher level of life.</p>
+                        <p>We offer you three stages:</p>
+                    </div>
+                    <div class="journey-stages">
+                        <div class="stage-card">
+                            <div class="stage-number">1</div>
+                            <div class="stage-content">
+                                <h4>Stage One</h4>
+                                <p>The path unfolds first and foremost through the transformation of consciousness and thinking.</p>
+                            </div>
+                        </div>
+                        <div class="stage-card">
+                            <div class="stage-number">2</div>
+                            <div class="stage-content">
+                                <h4>Stage Two</h4>
+                                <p>Discovering Your Purpose, Unfolding Abundance and Meeting your Genuine Half.</p>
+                            </div>
+                        </div>
+                        <div class="stage-card">
+                            <div class="stage-number">3</div>
+                            <div class="stage-content">
+                                <h4>Stage Three</h4>
+                                <p>The Modern Technologies Project.</p>
+                                <p>You become part of the research that will change the world.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journey-guidance">
+                        <div class="guidance-content">
+                            <p>It also serves as an example of how we found our own purpose —</p>
+                            <p>and as guidance for those who will walk the same path.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Course Cards Section -->
+                    <div class="course-cards-section">
+                        <h3>Our Courses & Programs</h3>
+                        <div class="course-cards">
+                            <div class="course-card">
+                                <div class="course-image">
+                                    <img src="logo.png" alt="Logo" class="course-logo">
+                                </div>
+                                <div class="course-content">
+                                    <h4>Ascended Essences</h4>
+                                    <p>If you feel lost in life and long for a breath of fresh air, if depression, fears, or addictions are holding you back, there is hope and a path to overcome them. Sometimes this feeling of being lost comes from a deep knowledge that there must be a way toward a higher, more fulfilling level of life. You are fully capable of reaching it — but lack the keys and a hint, that could reveal what this path looks like and where to find it.</p>
+                                    <button class="course-btn">Come see details >>></button>
+                                </div>
+                            </div>
+                            
+                            <div class="course-card">
+                                <div class="course-image">
+                                    <img src="logo.png" alt="Logo" class="course-logo">
+                                </div>
+                                <div class="course-content">
+                                    <h4>Discovering Your Purpose, Unfolding Abundance and Meeting your Genuine Half</h4>
+                                    <p>Ideation and Collaboration</p>
+                                    <button class="course-btn">Come see details</button>
+                                </div>
+                            </div>
+                            
+                            <div class="course-card">
+                                <div class="course-image">
+                                    <img src="logo.png" alt="Logo" class="course-logo">
+                                </div>
+                                <div class="course-content">
+                                    <h4>Physical Teleportation of Bio Systems (ptBS)</h4>
+                                    <p>Workshop project</p>
+                                    <button class="course-btn">See prerequisites to join >></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-section">
+                        <h3>Ready to Begin Your Journey?</h3>
+                        <p>Join the Alpasca Journey of Essence and discover your true purpose</p>
+                        <button class="join-btn">Begin Your Journey</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
