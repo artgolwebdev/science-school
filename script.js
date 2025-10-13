@@ -348,61 +348,52 @@ window.addEventListener('scroll', () => {
 /* ========================================
    SCROLL-TRIGGERED ANIMATIONS
    ======================================== */
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
+// General observer removed - only using timeline-specific observer for history section
 
 // Timeline-specific observer for staggered animations
 const timelineObserverOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: 0.3,
+    rootMargin: '0px 0px -50px 0px'
 };
 
 const timelineObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const timelineItem = entry.target;
-            const timelineYear = timelineItem.querySelector('.timeline-year');
-            const timelineContent = timelineItem.querySelector('.timeline-content');
-            const title = timelineContent?.querySelector('h3');
-            const subtitle = timelineContent?.querySelector('h4');
-            const paragraphs = timelineContent?.querySelectorAll('p');
-            const lists = timelineContent?.querySelectorAll('ul');
             
-            // Add animate class to trigger animations
+            // Add animate class to timeline item
             timelineItem.classList.add('animate');
-            if (timelineYear) timelineYear.classList.add('animate');
-            if (timelineContent) timelineContent.classList.add('animate');
-            if (title) title.classList.add('animate');
-            if (subtitle) subtitle.classList.add('animate');
-            if (paragraphs) paragraphs.forEach(p => p.classList.add('animate'));
-            if (lists) lists.forEach(ul => ul.classList.add('animate'));
+            
+            // Animate child elements with slight delay
+            setTimeout(() => {
+                const timelineYear = timelineItem.querySelector('.timeline-year');
+                const timelineContent = timelineItem.querySelector('.timeline-content');
+                
+                if (timelineYear) timelineYear.classList.add('animate');
+                if (timelineContent) {
+                    timelineContent.classList.add('animate');
+                    
+                    // Animate content elements
+                    setTimeout(() => {
+                        const title = timelineContent.querySelector('h3');
+                        const subtitle = timelineContent.querySelector('h4');
+                        const paragraphs = timelineContent.querySelectorAll('p');
+                        const lists = timelineContent.querySelectorAll('ul');
+                        
+                        if (title) title.classList.add('animate');
+                        if (subtitle) subtitle.classList.add('animate');
+                        paragraphs.forEach(p => p.classList.add('animate'));
+                        lists.forEach(ul => ul.classList.add('animate'));
+                    }, 200);
+                }
+            }, 100);
         }
     });
 }, timelineObserverOptions);
 
-// Observe sections for fade-in animation
+// Initialize history section timeline animations only
 document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
-    });
-    
-    // Observe timeline items for staggered animations
+    // Observe timeline items for staggered animations in history section only
     const timelineItems = document.querySelectorAll('.timeline-item');
     timelineItems.forEach(item => {
         timelineObserver.observe(item);
@@ -538,11 +529,18 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.style.opacity = '0.7';
             
             setTimeout(() => {
+                // Add success animation
+                submitBtn.classList.add('success');
                 showNotification('Thank you for your message! We will get back to you soon.', 'success');
-                contactForm.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                submitBtn.style.opacity = '1';
+                
+                // Reset form and button after animation
+                setTimeout(() => {
+                    contactForm.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.classList.remove('success');
+                }, 1000);
             }, 2000);
         });
     }
