@@ -471,6 +471,12 @@ h6 {
     letter-spacing: 0.02em;
 }
 
+/* Second slide text smaller */
+.quote-slide:nth-child(2) p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
 /* Quote Slider Section */
 .quote-slider-section {
     display: flex;
@@ -716,6 +722,12 @@ h6 {
         letter-spacing: 0.02em;
     }
     
+    /* Second slide text smaller on tablet */
+    .quote-slide:nth-child(2) p {
+        font-size: 1.3rem;
+        line-height: 1.6;
+    }
+    
     
     .typing-section {
         padding: 3rem 1rem;
@@ -771,6 +783,12 @@ h6 {
         font-family: 'Tourney', sans-serif;
         font-weight: 300;
         letter-spacing: 0.02em;
+    }
+    
+    /* Second slide text smaller on mobile */
+    .quote-slide:nth-child(2) p {
+        font-size: 1.1rem;
+        line-height: 1.6;
     }
     
     

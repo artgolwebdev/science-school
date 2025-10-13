@@ -132,7 +132,7 @@ function updateNavbarBackground() {
 }
 
 // Typing Animation with Moving Cursor
-function typeWriter(element, text, speed = 30) {
+function typeWriter(element, text, speed = 20) {
     let i = 0;
     element.innerHTML = '';
     
@@ -335,7 +335,7 @@ setTimeout(() => {
     const typingText = "If you feel lost in life and long for a breath of the fresh air, if depression, fears, or addictions are holding you back, there is hope and a path to overcome them. Sometimes this feeling of being lost comes from deep knowledge that there must be a way toward a higher, more fulfilling level of life. You are fully capable of reaching it — but lack the keys and a hint, that could reveal what this path looks like and where to find it.";
     
     if (typingElement) {
-        typeWriter(typingElement, typingText, 25);
+        typeWriter(typingElement, typingText, 15);
     }
 }, 2500);
 
