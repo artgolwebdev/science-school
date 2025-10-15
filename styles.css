@@ -1952,13 +1952,14 @@ h6 {
 }
 
 .history-section h2 {
-    font-family: 'Tourney', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: #e0e0e0;
-    font-size: 3.5rem;
-    font-weight: 300;
+    font-size: 2.5rem;
+    font-weight: 500;
     text-align: left;
     letter-spacing: 0.02em;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
 }
 
 .timeline {
@@ -1980,12 +1981,23 @@ h6 {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
     display: flex;
     align-items: flex-start;
     opacity: 0;
     transform: translateY(50px);
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.timeline-item:hover {
+    transform: translateY(-5px);
+}
+
+.timeline-item:hover .timeline-content {
+    background: rgba(60, 60, 60, 0.95);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
 }
 
 .timeline-item.animate {
@@ -2003,20 +2015,20 @@ h6 {
 
 
 .timeline-year {
-    font-family: 'Audiowide', cursive;
+    font-family: 'Inter', sans-serif;
     background: rgba(60, 60, 60, 0.9);
     color: #e0e0e0;
-    padding: 0.8rem 1.5rem;
-    border-radius: 0;
-    font-weight: 400;
-    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.85rem;
     white-space: nowrap;
-    margin: 0 2rem;
+    margin: 0 1.5rem;
     z-index: 2;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    min-width: 80px;
+    min-width: 60px;
     text-align: center;
-    border: 2px solid #666;
+    border: 1px solid #666;
     opacity: 0;
     transform: scale(0.9);
     transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -2030,11 +2042,11 @@ h6 {
 .timeline-content {
     background: rgba(45, 45, 45, 0.9);
     backdrop-filter: blur(15px);
-    padding: 2.5rem;
-    border-radius: 0;
+    padding: 1.5rem;
+    border-radius: 8px;
     flex: 1;
-    max-width: 450px;
-    border: 2px solid #555;
+    max-width: 380px;
+    border: 1px solid #555;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     opacity: 0;
     transform: translateY(30px);
@@ -2049,12 +2061,12 @@ h6 {
 }
 
 .timeline-content h3 {
-    font-family: 'Tourney', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
     color: #e0e0e0;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     line-height: 1.3;
     opacity: 0;
     transform: translateY(20px);
@@ -2067,10 +2079,10 @@ h6 {
 }
 
 .timeline-content h4 {
-    font-family: 'Audiowide', cursive;
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin: 1.5rem 0 1rem 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 1rem 0 0.8rem 0;
     color: #c0c0c0;
     line-height: 1.4;
     opacity: 0;
@@ -2084,11 +2096,11 @@ h6 {
 }
 
 .timeline-content p {
-    font-family: 'Audiowide', cursive;
+    font-family: 'Inter', sans-serif;
     color: #a0a0a0;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
     opacity: 0;
     transform: translateY(15px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -2100,13 +2112,14 @@ h6 {
 }
 
 .timeline-content ul {
-    font-family: 'Audiowide', cursive;
+    font-family: 'Inter', sans-serif;
     color: #a0a0a0;
-    padding-left: 1.5rem;
-    margin: 1rem 0;
+    padding-left: 1.2rem;
+    margin: 0.8rem 0;
     opacity: 0;
     transform: translateX(-10px);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 0.8rem;
 }
 
 .timeline-content ul.animate {
@@ -2115,8 +2128,9 @@ h6 {
 }
 
 .timeline-content li {
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+    font-size: 0.8rem;
 }
 
 /* Scholars Section */
@@ -3619,21 +3633,21 @@ h6 {
 
     /* Mobile Timeline */
     .timeline {
-        margin-top: 2rem;
+        margin-top: 1.5rem;
         width: 100%;
         max-width: 100%;
     }
 
     .timeline::before {
-        left: 15px;
+        left: 12px;
         width: 2px;
     }
 
     .timeline-item {
         flex-direction: column !important;
         align-items: flex-start;
-        padding-left: 2.5rem;
-        margin-bottom: 2.5rem;
+        padding-left: 2rem;
+        margin-bottom: 1.8rem;
         width: 100%;
         max-width: 100%;
     }
@@ -3643,34 +3657,34 @@ h6 {
         left: 0;
         margin: 0;
         transform: translateX(-50%);
-        font-size: 0.85rem;
-        padding: 0.5rem 0.8rem;
-        min-width: 50px;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+        min-width: 45px;
         text-align: center;
     }
 
     .timeline-content {
         max-width: none;
         width: 100%;
-        padding: 1.5rem 1rem;
+        padding: 1.2rem 0.8rem;
         margin-top: 0.5rem;
         box-sizing: border-box;
     }
 
     .timeline-content h3 {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
     }
 
     .timeline-content h4 {
-        font-size: 1.1rem;
-        margin: 1.2rem 0 0.8rem 0;
+        font-size: 0.95rem;
+        margin: 1rem 0 0.6rem 0;
     }
 
     .timeline-content p {
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 0.8rem;
     }
 
     /* Mobile Contact Form - Sharp Squares Style */
