@@ -380,7 +380,7 @@ h6 {
     z-index: 10;
     opacity: 0;
     animation: logo-fade-in 1.5s ease-out 0.5s forwards;
-    flex: 0 0 40%;
+    flex: 0 0 45%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -388,15 +388,25 @@ h6 {
 }
 
 .hero-logo-img {
-    height: 300px;
+    height: 500px;
     width: auto;
-    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
-    transition: all 0.3s ease;
+    filter: drop-shadow(0 8px 40px rgba(0, 0, 0, 0.4));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: logo-pulse-glow 4s ease-in-out infinite;
 }
 
 .hero-logo-img:hover {
-    transform: scale(1.1);
-    filter: drop-shadow(0 6px 25px rgba(0, 0, 0, 0.4));
+    transform: scale(1.15);
+    filter: drop-shadow(0 12px 50px rgba(0, 0, 0, 0.6));
+}
+
+@keyframes logo-pulse-glow {
+    0%, 100% {
+        filter: drop-shadow(0 8px 40px rgba(0, 0, 0, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 10px 45px rgba(74, 144, 226, 0.3));
+    }
 }
 
 @keyframes logo-fade-in {
@@ -410,40 +420,31 @@ h6 {
     }
 }
 
-/* Quote Slider */
+/* Quote Slider - Minimalistic Design */
 .quote-slider {
     position: relative;
     width: 100%;
-    max-width: 500px;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(15px);
-    border-radius: 0;
-    border: 2px solid rgba(255, 255, 255, 0.25);
-    padding: 1.2rem 2rem 0.8rem 2rem;
-    min-height: 160px;
+    max-width: 600px;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    padding: 0;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     opacity: 0;
     animation: fade-in-up 1.2s ease-out 1s forwards;
     margin: 0;
     flex: 1;
     position: relative;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
-    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    box-shadow: none;
+    clip-path: none;
 }
 
 .quote-slider::before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
-    z-index: -1;
-    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    display: none;
 }
 
 .quote-slide {
@@ -454,39 +455,55 @@ h6 {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 1.5rem 2.5rem 1rem 2.5rem;
+    justify-content: center;
+    padding: 0;
     opacity: 0;
-    transform: translateX(30px);
-    transition: all 0.6s ease;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     box-sizing: border-box;
 }
 
 .quote-slide.active {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
 }
 
 .quote-slide p {
     font-family: 'Tourney', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 300;
-    line-height: 1.6;
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
     color: #fff;
     text-align: left;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
     margin: 0;
-    max-width: 90%;
-    padding: 0;
+    max-width: 100%;
+    padding: 0 2rem;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fff 0%, #f0f0f0 50%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: text-glow 3s ease-in-out infinite alternate;
 }
 
-/* Second slide text smaller */
+@keyframes text-glow {
+    0% {
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+    100% {
+        text-shadow: 0 6px 30px rgba(74, 144, 226, 0.4), 0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* Second slide text - also bold and large */
 .quote-slide:nth-child(2) p {
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 3rem;
+    line-height: 1.3;
+    font-weight: 700;
 }
 
 /* Quote Slider Section */
@@ -495,6 +512,87 @@ h6 {
     flex-direction: column;
     align-items: center;
     flex: 0 0 50%;
+}
+
+/* ========================================
+   HERO TERMINAL ANIMATION
+   ======================================== */
+.hero-terminal {
+    margin-top: 3rem;
+    width: 100%;
+    max-width: 800px;
+    opacity: 0;
+    animation: fade-in-up 1.5s ease-out 2s forwards;
+}
+
+.hero-terminal .typing-text {
+    /* Terminal Base Styles */
+    background: linear-gradient(135deg, #1a252f 0%, #2c3e50 50%, #34495e 100%);
+    border-radius: 8px;
+    border: 2px solid #4a5568;
+    box-shadow: 
+        0 0 0 1px #2d3748,
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(52, 152, 219, 0.2);
+    
+    /* Layout & Spacing */
+    padding: 2.5rem;
+    padding-top: 3.5rem;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Typography */
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: #e2e8f0;
+    text-align: left;
+    
+    /* Effects */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Terminal Window Decorations */
+.hero-terminal .typing-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.hero-terminal .typing-text::after {
+    content: '● ● ●';
+    position: absolute;
+    top: 8px;
+    left: 1rem;
+    color: #e53e3e;
+    font-size: 0.8rem;
+    letter-spacing: 0.5rem;
+}
+
+/* Terminal Cursor Animation */
+.hero-terminal .cursor {
+    animation: terminalBlink 1.2s infinite;
+    color: #00ff88;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+    padding: 0 2px;
+    border-radius: 2px;
 }
 
 /* Slider Dots */
@@ -720,45 +818,61 @@ h6 {
     }
     
     .hero-logo-img {
-        height: 450px;
+        height: 200px;
     }
     
     .quote-slider {
         max-width: 100%;
         width: 100%;
-        padding: 1.5rem 1.2rem 1rem 1.2rem;
-        min-height: 150px;
+        padding: 0;
+        min-height: 120px;
         flex: none;
-        align-items: flex-start;
-        clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+        align-items: center;
+        clip-path: none;
         box-sizing: border-box;
         overflow: hidden;
     }
     
     .quote-slide {
-        padding: 1.5rem 1.2rem 1rem 1.2rem;
-        justify-content: flex-start;
+        padding: 0;
+        justify-content: center;
     }
     
     .quote-slide p {
-        font-size: 1.5rem;
-        line-height: 1.7;
+        font-size: 1.8rem;
+        line-height: 1.4;
         max-width: 95%;
         text-align: left;
         font-family: 'Tourney', sans-serif;
-        font-weight: 300;
-        letter-spacing: 0.02em;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
     }
     
-    /* Second slide text smaller on tablet */
+    /* Second slide text on tablet */
     .quote-slide:nth-child(2) p {
-        font-size: 1.3rem;
-        line-height: 1.6;
+        font-size: 1.6rem;
+        line-height: 1.5;
+        font-weight: 600;
     }
     
     
     .typing-section {
         padding: 3rem 1rem;
+    }
+    
+    /* Mobile Hero Terminal - Tablet */
+    .hero-terminal {
+        margin-top: 2rem;
+        max-width: 100%;
+    }
+    
+    .hero-terminal .typing-text {
+        padding: 1.5rem 1.2rem;
+        padding-top: 3rem;
+        min-height: 120px;
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
     
     .typing-text {
@@ -791,44 +905,59 @@ h6 {
     }
     
     .hero-logo-img {
-        height: 380px;
+        height: 150px;
     }
     
     .quote-slider {
         max-width: 100%;
         width: 100%;
-        padding: 1.2rem 1rem 0.8rem 1rem;
-        min-height: 140px;
-        align-items: flex-start;
-        clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+        padding: 0;
+        min-height: 100px;
+        align-items: center;
+        clip-path: none;
         box-sizing: border-box;
         overflow: hidden;
     }
     
     .quote-slide {
-        padding: 1.2rem 1rem 0.8rem 1rem;
-        justify-content: flex-start;
+        padding: 0;
+        justify-content: center;
     }
     
     .quote-slide p {
-        font-size: 1.3rem;
-        line-height: 1.7;
+        font-size: 1.4rem;
+        line-height: 1.5;
         max-width: 95%;
         text-align: left;
         font-family: 'Tourney', sans-serif;
-        font-weight: 300;
+        font-weight: 700;
         letter-spacing: 0.02em;
+        text-transform: uppercase;
     }
     
-    /* Second slide text smaller on mobile */
+    /* Second slide text on mobile */
     .quote-slide:nth-child(2) p {
-        font-size: 1.1rem;
-        line-height: 1.6;
+        font-size: 1.2rem;
+        line-height: 1.4;
+        font-weight: 600;
     }
     
     
     .typing-section {
         padding: 2rem 1rem;
+    }
+    
+    /* Small Mobile Hero Terminal */
+    .hero-terminal {
+        margin-top: 1.5rem;
+    }
+    
+    .hero-terminal .typing-text {
+        padding: 1rem;
+        padding-top: 2.5rem;
+        min-height: 100px;
+        font-size: 0.8rem;
+        line-height: 1.4;
     }
     
     .typing-text {
