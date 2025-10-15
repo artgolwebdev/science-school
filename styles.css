@@ -2252,19 +2252,42 @@ h6 {
     font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 3rem;
-    color: #e0e0e0;
+    color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 3px;
     text-align: center;
     position: relative;
     z-index: 2;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.6),
+        0 0 30px rgba(255, 255, 255, 0.4),
+        0 0 40px rgba(255, 255, 255, 0.2);
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(255, 255, 255, 0.6),
+            0 0 30px rgba(255, 255, 255, 0.4),
+            0 0 40px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        text-shadow: 
+            0 0 15px rgba(255, 255, 255, 1),
+            0 0 25px rgba(255, 255, 255, 0.8),
+            0 0 35px rgba(255, 255, 255, 0.6),
+            0 0 45px rgba(255, 255, 255, 0.4);
+    }
 }
 
 .goals-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    max-width: 1200px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    max-width: 1000px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
@@ -2272,12 +2295,16 @@ h6 {
 
 .goal-box {
     background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
-    padding: 1.5rem;
+    padding: 1.2rem;
     border: 2px solid #555;
     position: relative;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     animation: floatChaos 12s ease-in-out infinite;
     clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .goal-box:nth-child(1) {
@@ -2379,10 +2406,30 @@ h6 {
     font-family: 'Audiowide', cursive;
     font-size: 0.9rem;
     font-weight: 700;
-    color: #888;
+    color: #ffffff;
     margin-bottom: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.9),
+        0 0 16px rgba(255, 255, 255, 0.7),
+        0 0 24px rgba(255, 255, 255, 0.5);
+    animation: goalNumberGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes goalNumberGlow {
+    0% {
+        text-shadow: 
+            0 0 8px rgba(255, 255, 255, 0.9),
+            0 0 16px rgba(255, 255, 255, 0.7),
+            0 0 24px rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        text-shadow: 
+            0 0 12px rgba(255, 255, 255, 1),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 28px rgba(255, 255, 255, 0.6);
+    }
 }
 
 .goal-text {
@@ -2895,6 +2942,19 @@ h6 {
     opacity: 1;
 }
 
+.cta-section:hover h3 {
+    color: #000;
+    text-shadow: 
+        0 0 8px rgba(0, 0, 0, 0.8),
+        0 0 16px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+}
+
+.cta-section:hover p {
+    color: #333;
+    transition: all 0.3s ease;
+}
+
 .cta-section h3 {
     font-family: 'Audiowide', cursive;
     font-size: 1.4rem;
@@ -2904,6 +2964,7 @@ h6 {
     text-transform: uppercase;
     letter-spacing: 3px;
     line-height: 1.2;
+    transition: all 0.3s ease;
 }
 
 .cta-section p {
@@ -2913,6 +2974,7 @@ h6 {
     font-size: 0.8rem;
     line-height: 1.4;
     font-weight: 400;
+    transition: all 0.3s ease;
 }
 
 .join-btn {
@@ -2934,6 +2996,7 @@ h6 {
     overflow: hidden;
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
     z-index: 2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .join-btn::before {
@@ -2961,13 +3024,46 @@ h6 {
     transition: left 0.6s ease;
 }
 
+.join-btn:active::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out;
+    z-index: 1;
+}
+
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
+}
+
 .join-btn:hover {
-    transform: translateY(-6px) scale(1.08);
+    transform: translateY(-8px) scale(1.1) rotate(1deg);
     box-shadow: 
-        0 12px 35px rgba(0, 0, 0, 0.5),
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        0 0 20px rgba(255, 255, 255, 0.3),
         inset 0 2px 0 rgba(255, 255, 255, 0.9);
-    color: #000;
-    background: linear-gradient(135deg, #fff 0%, #f5f5f5 50%, #fff 100%);
+    color: #fff;
+    background: linear-gradient(135deg, #000 0%, #333 50%, #000 100%);
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.6),
+        0 0 30px rgba(255, 255, 255, 0.4);
+    border-color: #fff;
 }
 
 .join-btn:hover::before {
@@ -2979,12 +3075,16 @@ h6 {
 }
 
 .join-btn:active {
-    transform: translateY(-3px) scale(1.03);
+    transform: translateY(-2px) scale(0.95) rotate(-0.5deg);
     box-shadow: 
-        0 6px 20px rgba(0, 0, 0, 0.4),
+        0 3px 10px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(255, 255, 255, 0.5),
         inset 0 2px 0 rgba(255, 255, 255, 0.8);
     transition: all 0.1s ease;
-    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+    background: linear-gradient(135deg, #fff 0%, #f0f0f0 50%, #fff 100%);
+    color: #000;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-color: #000;
 }
 
 .join-btn:active::after {
@@ -4042,6 +4142,10 @@ h6 {
     .goals-section h3 {
         font-size: 1.5rem;
         letter-spacing: 2px;
+        text-shadow: 
+            0 0 8px rgba(255, 255, 255, 0.8),
+            0 0 16px rgba(255, 255, 255, 0.6),
+            0 0 24px rgba(255, 255, 255, 0.4);
     }
 
     .goals-grid {
@@ -4066,15 +4170,16 @@ h6 {
         font-size: 0.8rem;
     }
 
-    /* Very small screens - single column */
+    /* Very small screens - maintain 2x2 layout */
     @media (max-width: 480px) {
         .goals-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 0.8rem;
         }
 
         .goal-box {
             padding: 1rem;
+            min-height: 160px;
         }
 
         .goal-icon {
@@ -4087,6 +4192,10 @@ h6 {
 
         .goal-number {
             font-size: 0.75rem;
+            text-shadow: 
+                0 0 4px rgba(255, 255, 255, 0.9),
+                0 0 8px rgba(255, 255, 255, 0.7),
+                0 0 12px rgba(255, 255, 255, 0.5);
         }
     }
 
@@ -4726,6 +4835,10 @@ h6 {
         font-size: 1.4rem;
         letter-spacing: 1.5px;
         margin-bottom: 2rem;
+        text-shadow: 
+            0 0 6px rgba(255, 255, 255, 0.8),
+            0 0 12px rgba(255, 255, 255, 0.6),
+            0 0 18px rgba(255, 255, 255, 0.4);
     }
 
     .goals-grid {
@@ -4745,6 +4858,10 @@ h6 {
     .goal-number {
         font-size: 0.8rem;
         margin-bottom: 0.6rem;
+        text-shadow: 
+            0 0 6px rgba(255, 255, 255, 0.9),
+            0 0 12px rgba(255, 255, 255, 0.7),
+            0 0 18px rgba(255, 255, 255, 0.5);
     }
 
     .goal-text {
@@ -5242,10 +5359,14 @@ h6 {
         font-size: 1.2rem;
         letter-spacing: 1px;
         margin-bottom: 1.5rem;
+        text-shadow: 
+            0 0 4px rgba(255, 255, 255, 0.8),
+            0 0 8px rgba(255, 255, 255, 0.6),
+            0 0 12px rgba(255, 255, 255, 0.4);
     }
 
     .goals-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 0.8rem;
     }
 
@@ -5261,6 +5382,10 @@ h6 {
     .goal-number {
         font-size: 0.7rem;
         margin-bottom: 0.5rem;
+        text-shadow: 
+            0 0 3px rgba(255, 255, 255, 0.9),
+            0 0 6px rgba(255, 255, 255, 0.7),
+            0 0 9px rgba(255, 255, 255, 0.5);
     }
 
     .goal-text {
