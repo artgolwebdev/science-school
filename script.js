@@ -3,6 +3,27 @@
    ======================================== */
 
 /* ========================================
+   ACCORDION FUNCTIONALITY
+   ======================================== */
+function toggleAccordion(stageNumber) {
+    const content = document.getElementById(`stage-content-${stageNumber}`);
+    const accordion = content.closest('.stage-accordion');
+    const arrow = accordion.querySelector('.accordion-arrow');
+    
+    // Close all other accordions
+    document.querySelectorAll('.stage-accordion').forEach(acc => {
+        if (acc !== accordion) {
+            acc.classList.remove('active');
+            acc.querySelector('.stage-content').classList.remove('active');
+        }
+    });
+    
+    // Toggle current accordion
+    accordion.classList.toggle('active');
+    content.classList.toggle('active');
+}
+
+/* ========================================
    LOADING ANIMATION
    ======================================== */
 window.addEventListener('load', function() {
