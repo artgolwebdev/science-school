@@ -30,18 +30,9 @@ function toggleAccordion(stageNumber) {
 // The container uses native CSS overflow-x: auto for scrolling
 
 /* ========================================
-   LOADING ANIMATION
+   LOADING ANIMATION - REMOVED FOR PERFORMANCE
    ======================================== */
-window.addEventListener('load', function() {
-    const loadingScreen = document.getElementById('loading-screen');
-    
-    setTimeout(() => {
-        loadingScreen.classList.add('fade-out');
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 500);
-    }, 3000); // Show loading for 3 seconds
-});
+// Loading animation removed - page loads instantly now
 
 /* ========================================
    NAVIGATION SYSTEM
@@ -162,12 +153,12 @@ function updateNavbarBackground() {
 function typeWriter(element, text, speed = 20) {
     let i = 0;
     element.innerHTML = '';
-    
+
     function type() {
         if (i < text.length) {
             // Add some randomness to typing speed for realism
             const randomDelay = speed + Math.random() * 20;
-            
+
             element.innerHTML = text.substring(0, i + 1) + '<span class="cursor">|</span>';
             i++;
             setTimeout(type, randomDelay);
@@ -176,7 +167,7 @@ function typeWriter(element, text, speed = 20) {
             element.innerHTML = text + '<span class="cursor">|</span>';
         }
     }
-    
+
     type();
 }
 
@@ -188,11 +179,11 @@ function typeWriter(element, text, speed = 20) {
 setTimeout(() => {
     const typingElement = document.getElementById('typing-text');
     const typingText = "If you feel lost in life and long for a breath of the fresh air, if depression, fears, or addictions are holding you back, there is hope and a path to overcome them. Sometimes this feeling of being lost comes from deep knowledge that there must be a way toward a higher, more fulfilling level of life. You are fully capable of reaching it — but lack the keys and a hint, that could reveal what this path looks like and where to find it.";
-    
+
     if (typingElement) {
         typeWriter(typingElement, typingText, 15);
     }
-}, 2500);
+}, 500); // Start immediately after page load
 
 // Scroll event listeners
 window.addEventListener('scroll', () => {
@@ -201,10 +192,8 @@ window.addEventListener('scroll', () => {
 });
 
 /* ========================================
-   SCROLL-TRIGGERED ANIMATIONS
+   SCROLL-TRIGGERED ANIMATIONS - Optimized
    ======================================== */
-// General observer removed - only using timeline-specific observer for history section
-
 // Timeline-specific observer for staggered animations
 const timelineObserverOptions = {
     threshold: 0.3,
@@ -215,49 +204,18 @@ const timelineObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const timelineItem = entry.target;
-            
-            // Add animate class to timeline item
             timelineItem.classList.add('animate');
-            
-            // Animate child elements with slight delay
-            setTimeout(() => {
-                const timelineYear = timelineItem.querySelector('.timeline-year');
-                const timelineContent = timelineItem.querySelector('.timeline-content');
-                
-                if (timelineYear) timelineYear.classList.add('animate');
-                if (timelineContent) {
-                    timelineContent.classList.add('animate');
-                    
-                    // Animate content elements
-                    setTimeout(() => {
-                        const title = timelineContent.querySelector('h3');
-                        const subtitle = timelineContent.querySelector('h4');
-                        const paragraphs = timelineContent.querySelectorAll('p');
-                        const lists = timelineContent.querySelectorAll('ul');
-                        
-                        if (title) title.classList.add('animate');
-                        if (subtitle) subtitle.classList.add('animate');
-                        paragraphs.forEach(p => p.classList.add('animate'));
-                        lists.forEach(ul => ul.classList.add('animate'));
-                    }, 200);
-                }
-            }, 100);
         }
     });
 }, timelineObserverOptions);
 
 // Initialize history section timeline animations only
 document.addEventListener('DOMContentLoaded', () => {
-    // Observe timeline items for staggered animations in history section only
     const timelineItems = document.querySelectorAll('.timeline-item');
     timelineItems.forEach(item => {
         timelineObserver.observe(item);
     });
 });
-
-
-// Autoplay video for developers section (removed scroll control)
-// Video now autoplays and loops as a background decorative element
 
 // Enhanced form handling with mobile optimization
 document.addEventListener('DOMContentLoaded', () => {
@@ -378,44 +336,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set initial navbar state
     updateNavbarBackground();
     updateActiveNavLink();
-    
-    // Initialize hero floating video with autoplay
-    const heroFloatingVideo = document.querySelector('.hero-floating-video video');
-    if (heroFloatingVideo) {
-        // Set video properties for autoplay
-        heroFloatingVideo.muted = true;
-        heroFloatingVideo.playsInline = true;
-        heroFloatingVideo.loop = true;
 
-        // Attempt autoplay when video is ready
-        heroFloatingVideo.addEventListener('loadedmetadata', () => {
-            heroFloatingVideo.play().catch(e => {
-                console.log('Hero video autoplay prevented:', e);
-                // Try again on user interaction
-                document.addEventListener('click', () => {
-                    heroFloatingVideo.play().catch(err => console.log('Hero video still cannot play:', err));
-                }, { once: true });
-            });
-        });
+    // Initialize hero video with autoplay
+    const heroVideo = document.querySelector('.hero-video video');
+    if (heroVideo) {
+        heroVideo.muted = true;
+        heroVideo.playsInline = true;
+        heroVideo.loop = true;
+        heroVideo.play().catch(e => console.log('Hero video autoplay prevented:', e));
     }
 
     // Initialize developers video with autoplay
     const developersVideo = document.getElementById('developers-video');
     if (developersVideo) {
-        // Set video properties for autoplay
         developersVideo.muted = true;
         developersVideo.playsInline = true;
         developersVideo.loop = true;
-
-        // Attempt autoplay when video is ready
-        developersVideo.addEventListener('loadedmetadata', () => {
-            developersVideo.play().catch(e => {
-                console.log('Developers video autoplay prevented:', e);
-                // Try again on user interaction
-                document.addEventListener('click', () => {
-                    developersVideo.play().catch(err => console.log('Developers video still cannot play:', err));
-                }, { once: true });
-            });
-        });
+        developersVideo.play().catch(e => console.log('Developers video autoplay prevented:', e));
     }
 });
