@@ -24,6 +24,12 @@ function toggleAccordion(stageNumber) {
 }
 
 /* ========================================
+   SIMPLE COURSE SCROLL CONTAINER
+   ======================================== */
+// No JavaScript needed for simple horizontal scroll
+// The container uses native CSS overflow-x: auto for scrolling
+
+/* ========================================
    LOADING ANIMATION
    ======================================== */
 window.addEventListener('load', function() {
@@ -250,102 +256,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Scroll-controlled video for developers section
-let isScrolling = false;
-let scrollTimeout;
-
-function updateDevelopersVideo() {
-    const developersSection = document.getElementById('developers');
-    const developersVideo = document.getElementById('developers-video');
-    
-    if (!developersSection || !developersVideo) return;
-    
-    const sectionTop = developersSection.offsetTop;
-    const sectionHeight = developersSection.offsetHeight;
-    const windowHeight = window.innerHeight;
-    const scrollTop = window.pageYOffset;
-    
-    // Calculate when the section is in view
-    const sectionStart = sectionTop - windowHeight * 0.3; // Start when section is 30% visible
-    const sectionEnd = sectionTop + sectionHeight;
-    
-    // Check if we're scrolling through the developers section
-    if (scrollTop >= sectionStart && scrollTop <= sectionEnd) {
-        // Calculate progress through the section (0 to 1)
-        const scrollProgress = (scrollTop - sectionStart) / (sectionHeight + windowHeight * 0.3);
-        const progress = Math.max(0, Math.min(1, scrollProgress));
-        
-        // Get video duration
-        const videoDuration = developersVideo.duration;
-        if (videoDuration && !isNaN(videoDuration) && videoDuration > 0) {
-            // Set video time based on scroll progress
-            const targetTime = progress * videoDuration;
-            
-            // Only update if the difference is significant to avoid jitter
-            if (Math.abs(developersVideo.currentTime - targetTime) > 0.05) {
-                try {
-                    developersVideo.currentTime = targetTime;
-                } catch (e) {
-                    console.log('Error setting video time:', e);
-                }
-            }
-        }
-        
-        // Pause video when not actively scrolling
-        if (isScrolling) {
-            if (developersVideo.paused && developersVideo.readyState >= 2) {
-                developersVideo.play().catch(e => console.log('Video autoplay prevented:', e));
-            }
-        } else {
-            if (!developersVideo.paused) {
-                developersVideo.pause();
-            }
-        }
-    } else if (scrollTop < sectionStart) {
-        // Reset video to beginning when before section
-        if (developersVideo.readyState >= 2) {
-            developersVideo.currentTime = 0;
-            developersVideo.pause();
-        }
-    } else if (scrollTop > sectionEnd) {
-        // Set video to end when past section
-        if (developersVideo.duration && developersVideo.readyState >= 2) {
-            developersVideo.currentTime = developersVideo.duration;
-            developersVideo.pause();
-        }
-    }
-}
-
-// Scroll detection and video control
-let videoScrollTimeout;
-window.addEventListener('scroll', () => {
-    // Set scrolling state to true
-    isScrolling = true;
-    
-    // Clear existing timeout
-    if (videoScrollTimeout) {
-        clearTimeout(videoScrollTimeout);
-    }
-    
-    // Clear existing scroll timeout
-    if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-    }
-    
-    // Update video immediately for responsive feel
-    updateDevelopersVideo();
-    
-    // Set timeout to detect when scrolling stops
-    scrollTimeout = setTimeout(() => {
-        isScrolling = false;
-        updateDevelopersVideo(); // This will pause the video
-    }, 150); // 150ms delay after scroll stops
-    
-    // Also set a timeout for cleanup
-    videoScrollTimeout = setTimeout(() => {
-        updateDevelopersVideo();
-    }, 16); // ~60fps
-});
+// Autoplay video for developers section (removed scroll control)
+// Video now autoplays and loops as a background decorative element
 
 // Enhanced form handling with mobile optimization
 document.addEventListener('DOMContentLoaded', () => {
@@ -467,28 +379,43 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavbarBackground();
     updateActiveNavLink();
     
-    // Initialize developers video
+    // Initialize hero floating video with autoplay
+    const heroFloatingVideo = document.querySelector('.hero-floating-video video');
+    if (heroFloatingVideo) {
+        // Set video properties for autoplay
+        heroFloatingVideo.muted = true;
+        heroFloatingVideo.playsInline = true;
+        heroFloatingVideo.loop = true;
+
+        // Attempt autoplay when video is ready
+        heroFloatingVideo.addEventListener('loadedmetadata', () => {
+            heroFloatingVideo.play().catch(e => {
+                console.log('Hero video autoplay prevented:', e);
+                // Try again on user interaction
+                document.addEventListener('click', () => {
+                    heroFloatingVideo.play().catch(err => console.log('Hero video still cannot play:', err));
+                }, { once: true });
+            });
+        });
+    }
+
+    // Initialize developers video with autoplay
     const developersVideo = document.getElementById('developers-video');
     if (developersVideo) {
-        // Set initial video properties
-        developersVideo.currentTime = 0;
+        // Set video properties for autoplay
         developersVideo.muted = true;
         developersVideo.playsInline = true;
-        
-        // Wait for video to be ready
+        developersVideo.loop = true;
+
+        // Attempt autoplay when video is ready
         developersVideo.addEventListener('loadedmetadata', () => {
-            developersVideo.currentTime = 0;
-            console.log('Developers video loaded, duration:', developersVideo.duration);
-        });
-        
-        // Handle video ready state
-        developersVideo.addEventListener('canplay', () => {
-            console.log('Developers video can play');
-        });
-        
-        // Ensure video is ready for scroll control
-        developersVideo.addEventListener('loadeddata', () => {
-            developersVideo.currentTime = 0;
+            developersVideo.play().catch(e => {
+                console.log('Developers video autoplay prevented:', e);
+                // Try again on user interaction
+                document.addEventListener('click', () => {
+                    developersVideo.play().catch(err => console.log('Developers video still cannot play:', err));
+                }, { once: true });
+            });
         });
     }
 });
